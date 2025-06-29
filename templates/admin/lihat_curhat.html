@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar Curhat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Curhatan Anonim Masuk</h1>
+    <nav><a href="{{ url_for('dashboard') }}">← Kembali</a></nav>
+  </header>
+
+  <main>
+    {% for c in data %}
+      <div class="card">
+        <p>{{ c[1] }}</p>
+        <small>Dikirim: {{ c[2] }}</small>
+      </div>
+    {% else %}
+      <p>Belum ada curhatan dari user.</p>
+    {% endfor %}
+  </main>
+</body>
+</html>

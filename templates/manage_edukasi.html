@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Manajemen Edukasi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Kelola Data Edukasi</h1>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Kembali ke Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="color: black;">Tambah Edukasi Baru</h2>
+    <form method="POST" action="{{ url_for('tambah_edukasi') }}">
+      <input type="text" name="judul" placeholder="Judul" required><br>
+      <textarea name="isi" placeholder="Isi edukasi" required></textarea><br>
+      <button type="submit">Tambah</button>
+    </form>
+
+    <hr>
+
+    <h2>Daftar Edukasi</h2>
+    <ul>
+      {% for item in data %}
+        <li>
+          <strong>{{ item[1] }}</strong><br>
+          {{ item[2] }}<br>
+          <a href="{{ url_for('edit_edukasi', id=item[0]) }}">Edit</a> |
+          <a href="{{ url_for('hapus_edukasi', id=item[0]) }}" onclick="return confirm('Yakin hapus?')">Hapus</a>
+        </li>
+      {% else %}
+        <p>Belum ada data edukasi.</p>
+      {% endfor %}
+    </ul>
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Konsultasi Remaja</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Konsultasi Remaja</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Beranda</a>
+        <a href="{{ url_for('edukasi_user') }}">Edukasi</a>
+        <a href="{{ url_for('kontak_user') }}">Konsultasi</a>
+        <a href="{{ url_for('kuis_user') }}">Kuis</a>
+        <a href="{{ url_for('curhat') }}">Curhat</a>
+    </nav>
+  </header>
+
+  <div class="marquee-wrapper">
+    <div class="marquee-text">🧠 Konsultasi Gratis & Rahasia untuk Remaja 🧠</div>
+  </div>
+
+  <main style="background-color: #dae5f8;">
+    <section class="konsultasi fade-in">
+      <h2 style="color: black;">Formulir Konsultasi</h2>
+      <p>Isi formulir berikut untuk konsultasi via WhatsApp:</p>
+
+      <form id="konsultasiForm">
+        <label>Nama Anda:</label><br>
+        <input type="text" id="nama" placeholder="Contoh: Andi" required><br><br>
+
+        <label>Masalah yang Dihadapi:</label><br>
+        <textarea id="masalah" rows="4" placeholder="Tulis masalah Anda di sini..." required></textarea><br><br>
+
+        <button type="submit">Kirim ke WhatsApp</button>
+      </form>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    }
+    
+    // Motivasi Acak
+    const quotes = [
+      "Jangan takut gagal, karena gagal adalah bagian dari proses belajar.",
+      "Masa depanmu ditentukan oleh keputusanmu hari ini.",
+      "Remaja hebat adalah yang bisa mengendalikan dirinya.",
+      "Hindari kenakalan, bangun masa depan.",
+      "Jadilah versi terbaik dari dirimu, bukan yang lain."
+    ];
+    
+    function tampilkanMotivasi() {
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quote").innerText = random;
+    }
+    
+    // Muat saat halaman dibuka
+    window.addEventListener("DOMContentLoaded", function () {
+      tampilkanMotivasi();
+      const savedDark = localStorage.getItem("darkMode");
+      if (savedDark === "true") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+    </script>
+</body>
+</html>

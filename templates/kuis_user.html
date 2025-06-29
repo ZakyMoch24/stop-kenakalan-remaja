@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kuis Edukasi Remaja</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Kuis Interaktif: Edukasi Kenakalan Remaja</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Beranda</a>
+        <a href="{{ url_for('edukasi_user') }}">Edukasi</a>
+        <a href="{{ url_for('kontak_user') }}">Konsultasi</a>
+        <a href="{{ url_for('kuis_user') }}">Kuis</a>
+        <a href="{{ url_for('curhat') }}">Curhat</a>
+    </nav>
+  </header>
+
+  <main class="quiz">
+    <form id="kuisForm">
+      {% for soal in data %}
+        <div class="soal">
+          <p><strong>{{ loop.index }}.</strong> {{ soal[1] }}</p>
+          <label><input type="radio" name="q{{ loop.index }}" value="A"> {{ soal[2] }}</label><br>
+          <label><input type="radio" name="q{{ loop.index }}" value="B"> {{ soal[3] }}</label><br>
+          <label><input type="radio" name="q{{ loop.index }}" value="C"> {{ soal[4] }}</label><br>
+          <label><input type="radio" name="q{{ loop.index }}" value="D"> {{ soal[5] }}</label>
+          <input type="hidden" name="jawaban_benar_q{{ loop.index }}" value="{{ soal[6]|upper }}">
+        </div>
+      {% endfor %}
+      <input type="text" id="nama" placeholder="Nama kamu" required>
+      <button type="submit">Kirim Jawaban</button>
+    </form>
+    
+
+    <div id="hasil" style="display:none; font-weight:bold; margin-top:20px;"></div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/kuis.js') }}"></script>
+</body>
+</html>

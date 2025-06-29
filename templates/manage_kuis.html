@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Manajemen Kuis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Kelola Soal Kuis</h1>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Kembali ke Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="color: black;">Tambah Soal Baru</h2>
+    <form method="POST" action="{{ url_for('tambah_kuis') }}">
+      <input type="text" name="pertanyaan" placeholder="Pertanyaan" required><br>
+      <input type="text" name="pilihan_a" placeholder="Pilihan A" required><br>
+      <input type="text" name="pilihan_b" placeholder="Pilihan B" required><br>
+      <input type="text" name="pilihan_c" placeholder="Pilihan C" required><br>
+      <input type="text" name="pilihan_d" placeholder="Pilihan D" required><br>
+      <input type="text" name="jawaban" placeholder="Jawaban Benar (A/B/C/D)" required><br>
+      <button type="submit">Tambah Soal</button>
+    </form>
+
+    <hr>
+
+    <h2>Daftar Soal</h2>
+    <ul>
+      {% for soal in data %}
+        <li>
+          <strong>{{ soal[1] }}</strong><br>
+          A. {{ soal[2] }}<br>
+          B. {{ soal[3] }}<br>
+          C. {{ soal[4] }}<br>
+          D. {{ soal[5] }}<br>
+          <em>Jawaban: {{ soal[6] }}</em>
+        </li>
+      {% else %}
+        <p>Belum ada soal kuis.</p>
+      {% endfor %}
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Pertanyaan</th>
+          <th>Jawaban</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for q in data %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ q[1] }}</td>
+          <td>{{ q[6] }}</td>
+          <td>
+            <a href="{{ url_for('hapus_kuis', id=q[0]) }}" onclick="return confirm('Yakin ingin menghapus soal ini?')">🗑 Hapus</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="4">Belum ada soal.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

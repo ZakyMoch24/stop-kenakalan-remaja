@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Edukasi Remaja</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Materi Edukasi Remaja</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Beranda</a>
+        <a href="{{ url_for('edukasi_user') }}">Edukasi</a>
+        <a href="{{ url_for('kontak_user') }}">Konsultasi</a>
+        <a href="{{ url_for('kuis_user') }}">Kuis</a>
+        <a href="{{ url_for('curhat') }}">Curhat</a>  
+      </nav>
+  </header>
+
+  
+  <div class="marquee-wrapper">
+    <div class="marquee-text">📘 Pelajari Dampak dan Cara Menghindari Kenakalan Remaja 📘</div>
+  </div>
+
+  <main>
+    <h2 class="section-title" style="color: black;">Materi Edukasi</h2>
+    <main style="background-color: #dae5f8;">
+        {% for e in data %}
+          <div class="card">
+            <h3>{{ e[1] }}</h3>
+            <p>{{ e[2] }}</p>
+          </div>
+        {% else %}
+          <p>Belum ada materi edukasi ditambahkan.</p>
+        {% endfor %}
+      </main>
+    <div class="card-grid">
+      <div class="card fade-in">
+        <h3>Apa Itu Kenakalan Remaja?</h3>
+        <p>Perilaku menyimpang seperti bolos, tawuran, merokok, dll.</p>
+      </div>
+      <div class="card fade-in">
+        <h3>Dampak Negatif</h3>
+        <p>Menurunnya prestasi, masa depan suram, risiko hukum dan sosial.</p>
+      </div>
+      <div class="card fade-in">
+        <h3>Jenis Kenakalan</h3>
+        <ul><li>Tawuran</li><li>Narkoba</li><li>Merokok</li><li>Pergaulan Bebas</li></ul>
+      </div>
+      <div class="card fade-in">
+        <h3>Cara Menghindari</h3>
+        <p>Aktif di kegiatan positif, dekat dengan keluarga, berteman sehat.</p>
+      </div>
+      <div class="card fade-in">
+        <h3>Manfaat Menghindari</h3>
+        <p>Prestasi meningkat, hidup sehat, masa depan lebih cerah.</p>
+      </div>
+    </div>
+
+    <section class="multimedia fade-in">
+        <h2 style="color: black;">Video Edukasi</h2>
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/FEQOeOoVwGQ" 
+            frameborder="0" 
+            allowfullscreen 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </iframe>
+        </div>
+      </section>
+      
+
+    <section class="quiz fade-in">
+      <h2 style="color: black;">Kuis Edukasi</h2>
+      <p><strong>Pertanyaan:</strong> Manakah dari berikut ini yang termasuk kenakalan remaja?</p>
+      <form id="quizForm">
+        <label><input type="radio" name="quiz" value="a"> Belajar kelompok</label><br>
+        <label><input type="radio" name="quiz" value="b"> Ekstrakurikuler</label><br>
+        <label><input type="radio" name="quiz" value="c"> Bolos sekolah ke warnet</label><br><br>
+        <button type="submit">Periksa Jawaban</button>
+      </form>
+      <p id="quizResult" class="quiz-result"></p>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

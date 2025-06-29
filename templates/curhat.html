@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruang Curhat Anonim</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Curhat Anonim</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Beranda</a>
+      <a href="{{ url_for('edukasi_user') }}">Edukasi</a>
+      <a href="{{ url_for('kontak_user') }}">Konsultasi</a>
+      <a href="{{ url_for('kuis_user') }}">Kuis</a>
+      <a href="{{ url_for('curhat') }}">Curhat</a>
+
+    </nav>
+    </header>
+
+  <main style="background-color: #dae5f8;">
+    {% if sukses %}
+      <p style="color:green;">Curhatan kamu sudah terkirim. Terima kasih!</p>
+    {% endif %}
+    <form method="POST" >
+      <textarea name="isi" rows="5" placeholder="Tulis curhatanmu di sini..." required></textarea><br>
+      <button type="submit">Kirim Curhat</button>
+    </form>
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

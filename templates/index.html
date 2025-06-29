@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Stop Kenakalan Remaja</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    
+    <h1>Stop Kenakalan Remaja</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Beranda</a>
+        <a href="{{ url_for('edukasi_user') }}">Edukasi</a>
+        <a href="{{ url_for('kontak_user') }}">Konsultasi</a>
+        <a href="{{ url_for('kuis_user') }}">Kuis</a>
+        <a href="{{ url_for('curhat') }}">Curhat</a>
+    </nav>
+  </header>
+  <div class="marquee-wrapper">
+    <div class="marquee-text">🌟 Selamat Datang di Website Edukasi Remaja Positif 🌟</div>
+  </div>
+  
+  <main>
+    <section class="fade-in">
+      <h2 class="section-title" style="color: black;">Selamat Datang!</h2>
+      <p>Website ini dibuat untuk membantu remaja memahami bahaya kenakalan remaja dan bagaimana cara menghindarinya secara positif.</p>
+    </section>
+    <section class="motivasi">
+      <h2 style="color: black;">Kutipan Hari Ini</h2>
+      <center><blockquote>{{ motivasi }}</blockquote></center>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    }
+    
+    // Motivasi Acak
+    const quotes = [
+      "Jangan takut gagal, karena gagal adalah bagian dari proses belajar.",
+      "Masa depanmu ditentukan oleh keputusanmu hari ini.",
+      "Remaja hebat adalah yang bisa mengendalikan dirinya.",
+      "Hindari kenakalan, bangun masa depan.",
+      "Jadilah versi terbaik dari dirimu, bukan yang lain."
+    ];
+    
+    function tampilkanMotivasi() {
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quote").innerText = random;
+    }
+    
+    // Muat saat halaman dibuka
+    window.addEventListener("DOMContentLoaded", function () {
+      tampilkanMotivasi();
+      const savedDark = localStorage.getItem("darkMode");
+      if (savedDark === "true") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+    </script>
+</body>
+</html>
